@@ -14,10 +14,10 @@ df = pd.read_csv('deposit term dirty null.csv', low_memory=False)
 df['duration'] = pd.to_numeric(df['duration'], errors='coerce')
 df = df.drop(['Id', 'BankId', 'Year', 'first_name', 'last_name', 'email'], axis=1, errors='ignore')
 df.dropna(subset=['housing', 'default',  'month', 'contact', 'job'], inplace=True)
-df['age'] = df['age'].fillna(df['age'].median())    # Filing the null values with median
-df['balance'] = df['balance'].fillna(df['balance'].median()) # Filing the null values with median
-df['duration'] = df['duration'].fillna(df['duration'].median()) # Filing the null values with median
-df['pdays'] = df['pdays'].fillna(df['pdays'].median()) # Filing the null values with median
+df['age'] = df['age'].fillna(df['age'].median())    # Filling the null values with median
+df['balance'] = df['balance'].fillna(df['balance'].median()) # Filling the null values with median
+df['duration'] = df['duration'].fillna(df['duration'].median()) # Filling the null values with median
+df['pdays'] = df['pdays'].fillna(df['pdays'].median()) # Filling the null values with median
 
 mean_balance = df[df['balance'] >= 0]['balance'].mean()
 df['balance'] = df['balance'].apply(lambda x: mean_balance if x < 0 else x)
@@ -31,18 +31,16 @@ def cap_outliers(df, column):
     df[column] = df[column].apply(lambda x: lower_bound if x < lower_bound else (upper_bound if x > upper_bound else x))
     return df
 
-# Example usage
+# Cap outliers
 df = cap_outliers(df, 'age')
 df = cap_outliers(df, 'balance')
 df = cap_outliers(df, 'day')
 df = cap_outliers(df, 'campaign')
-# Repeat for other columns as needed
 
 df = df.drop(['pdays','previous'], axis=1)
 
-
 # Check for and remove non-numeric entries in numeric columns
-numeric_columns = ['balance', 'day', 'campaign', 'duration']  # Update if needed
+numeric_columns = ['balance', 'day', 'campaign', 'duration']
 
 # Function to convert columns to numeric, forcing errors to NaN
 def to_numeric(column):
@@ -53,12 +51,12 @@ for col in numeric_columns:
 
 # Fill missing values for numeric columns
 for col in numeric_columns:
-    df[col].fillna(df[col].median())
+    df[col].fillna(df[col].median(), inplace=True)
 
 # Fill missing values for categorical columns
 categorical_columns = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'poutcome']
 for col in categorical_columns:
-    df[col].fillna(df[col].mode()[0])
+    df[col].fillna(df[col].mode()[0], inplace=True)
 
 # Convert the target column 'y' to binary values (0 = no, 1 = yes)
 df['y'] = df['y'].apply(lambda x: 1 if x == 'yes' else 0)
@@ -92,10 +90,10 @@ model_pipeline.fit(X_train, y_train)
 # Make predictions and evaluate accuracy
 y_pred = model_pipeline.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
-print(f"Model Accuracy: {accuracy * 100:.2f}%")
+print(f"RandomForest Model Accuracy: {accuracy * 100:.2f}%")
 
 # Save the model and preprocessor
-with open('model.pkl', 'wb') as model_file:
+with open('random_forest_model.pkl', 'wb') as model_file:
     pickle.dump(model_pipeline, model_file)
 
-print("Model saved!")
+print("RandomForest Model saved!")

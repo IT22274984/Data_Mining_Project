@@ -1,7 +1,7 @@
 /* Global Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    background: linear-gradient(135deg, #bfafcf 0%, #8f9cb3 100%);
     margin: 0;
     padding: 20px;
     color: #333;
@@ -35,72 +35,76 @@ h1 {
 /* Form Labels */
 label {
     display: block;
-    margin-bottom: 8px;
-    color: #555;
+    margin-bottom: 5px;
     font-size: 1.1em;
+    color: #814f98;
     font-weight: 600;
 }
 
 /* Form Inputs */
-input[type="text"], input[type="number"], select {
+input[type="number"], select {
     width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 10px; /* Reduced the bottom margin */
+    padding: 10px 15px;
+    margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-sizing: border-box;
     background-color: #f9f9f9;
     color: #333;
     font-size: 1em;
-    transition: all 0.3s ease;
 }
 
-input[type="text"]:focus, input[type="number"]:focus, select:focus {
-    border-color: #6a11cb;
-    background-color: #f0f0ff;
-    box-shadow: 0 0 10px rgba(106, 17, 203, 0.4);
+/* Form Row */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-group:last-child {
+    margin-right: 0;
 }
 
 /* Button */
 button {
     width: 100%;
     padding: 15px;
-    background: linear-gradient(to right, #28a745, #218838);
+    background: linear-gradient(to right, #3a2c81, #216c88);
     border: none;
     border-radius: 10px;
     color: white;
     font-size: 1.3em;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
 }
 
 button:hover {
-    background: linear-gradient(to right, #218838, #28a745);
-    box-shadow: 0 8px 20px rgba(33, 136, 56, 0.4);
+    background-color: #217888;
     transform: translateY(-3px);
 }
 
-/* Form Spacing */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Reduced the gap between form elements */
+/* Output Container */
+.output-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #bbb0c5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.prediction-text {
+    font-size: 1.5em;
+    color: #333;
 }
 
 /* Media Query for Mobile */
 @media (max-width: 600px) {
-    .container {
-        padding: 25px;
-        margin: 20px;
-    }
-
-    h1 {
-        font-size: 2em;
-    }
-
-    button {
-        font-size: 1.1em;
+    .form-row {
+        flex-direction: column;
     }
 }
