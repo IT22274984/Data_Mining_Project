@@ -1,0 +1,134 @@
+Confusion Matrix
+The Confusion Matrix is a table used to evaluate the performance of a classification model by showing the predicted vs. actual outcomes. It consists of four key terms:
+
+Predicted Positive	Predicted Negative
+Actual Positive	True Positive (TP)	False Negative (FN)
+Actual Negative	False Positive (FP)	True Negative (TN)
+True Positives (TP): The number of correct predictions where the model predicted the positive class (e.g., "yes") and the actual label is positive.
+False Positives (FP): The number of incorrect predictions where the model predicted the positive class but the actual label is negative. This is also known as a Type I Error.
+True Negatives (TN): The number of correct predictions where the model predicted the negative class (e.g., "no") and the actual label is negative.
+False Negatives (FN): The number of incorrect predictions where the model predicted the negative class but the actual label is positive. This is known as a Type II Error.
+Confusion Matrix Interpretation
+The confusion matrix helps in understanding how well the model is distinguishing between the positive and negative classes. For instance, a large number of false positives (FP) indicates the model incorrectly predicts positives, and a large number of false negatives (FN) suggests the model is failing to capture the positive cases.
+
+Evaluation Metrics
+Once the confusion matrix is understood, we derive several evaluation metrics:
+
+Accuracy: This measures the proportion of correct predictions (both TP and TN) out of the total number of predictions.
+
+Accuracy
+=
+𝑇
+𝑃
++
+𝑇
+𝑁
+𝑇
+𝑃
++
+𝑇
+𝑁
++
+𝐹
+𝑃
++
+𝐹
+𝑁
+Accuracy= 
+TP+TN+FP+FN
+TP+TN
+​
+ 
+Accuracy gives a general idea of how well the model is performing but can be misleading with imbalanced datasets, as the model could predict mostly the majority class and still achieve high accuracy.
+
+Precision: Precision tells us how many of the predicted positive outcomes are actually positive. It is the proportion of true positive predictions to the total predicted positives (TP + FP).
+
+Precision
+=
+𝑇
+𝑃
+𝑇
+𝑃
++
+𝐹
+𝑃
+Precision= 
+TP+FP
+TP
+​
+ 
+Precision is important in scenarios where false positives are costly, such as in medical diagnosis or fraud detection.
+
+Recall (Sensitivity or True Positive Rate): Recall indicates how many actual positives are captured by the model. It is the proportion of true positives to the total actual positives (TP + FN).
+
+Recall
+=
+𝑇
+𝑃
+𝑇
+𝑃
++
+𝐹
+𝑁
+Recall= 
+TP+FN
+TP
+​
+ 
+Recall is crucial when false negatives are critical, such as detecting a disease where missing a positive case can be harmful.
+
+F1-Score: The F1-Score is the harmonic mean of precision and recall, providing a balance between the two. It is particularly useful when dealing with imbalanced classes.
+
+F1 Score
+=
+2
+×
+Precision
+×
+Recall
+Precision
++
+Recall
+F1 Score=2× 
+Precision+Recall
+Precision×Recall
+​
+ 
+The F1-Score ranges from 0 to 1, with 1 being the best. It is a good indicator when we seek a balance between precision and recall.
+
+ROC Curve (Receiver Operating Characteristic Curve)
+The ROC Curve is a graphical plot that illustrates the diagnostic ability of a binary classifier. It plots the True Positive Rate (Recall) against the False Positive Rate (FPR) at various threshold settings. The False Positive Rate is calculated as:
+
+FPR
+=
+𝐹
+𝑃
+𝐹
+𝑃
++
+𝑇
+𝑁
+FPR= 
+FP+TN
+FP
+​
+ 
+True Positive Rate (TPR): Also known as recall or sensitivity, it measures how many positive instances are correctly predicted.
+False Positive Rate (FPR): It measures the proportion of negative instances that are incorrectly classified as positive.
+A good model should have a high TPR and a low FPR, resulting in a curve that is closer to the top-left corner of the plot.
+
+Area Under the Curve (AUC)
+The AUC is the area under the ROC curve and provides a single measure of the model’s ability to discriminate between the positive and negative classes. The AUC ranges from 0 to 1:
+
+AUC = 1: Perfect model.
+AUC = 0.5: Random guessing, no discriminatory power.
+AUC < 0.5: The model is worse than random guessing.
+A high AUC (close to 1) indicates that the model is good at distinguishing between the classes.
+
+Summary of Use-Cases:
+Accuracy: Use it when the classes are balanced and you want a general idea of the model’s performance.
+Precision: Use it when false positives are costly (e.g., spam filtering, fraud detection).
+Recall: Use it when false negatives are costly (e.g., medical diagnostics, safety-related tasks).
+F1-Score: Use it when you want a balance between precision and recall, especially with imbalanced datasets.
+ROC Curve & AUC: Use it to visualize the performance of the model across different thresholds and assess overall performance. AUC helps compare models.
+I
